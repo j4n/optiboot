@@ -329,7 +329,7 @@ void appStart(uint8_t rstFlags) __attribute__ ((naked));
 #if defined(__AVR_ATmega168__)
 #define RAMSTART (0x100)
 #define NRWWSTART (0x3800)
-#elif defined(__AVR_ATmega328P__) || defined(__AVR_ATmega32__)
+#elif defined(__AVR_ATmega328P__) || defined(__AVR_ATmega324P__) || defined(__AVR_ATmega32__)
 #define RAMSTART (0x100)
 #define NRWWSTART (0x7000)
 #elif defined (__AVR_ATmega644P__)
