@@ -239,6 +239,24 @@ atmega168_isp: LFUSE ?= FF
 atmega168_isp: EFUSE ?= 04
 atmega168_isp: isp
 
+atmega324: TARGET = atmega324
+atmega324: MCU_TARGET = atmega324p
+atmega324: CFLAGS += '-DLED_START_FLASHES=3' '-DBAUD_RATE=115200'
+atmega324: AVR_FREQ = 16000000L
+atmega324: LDSECTION  = --section-start=.text=0x7e00
+atmega324: $(PROGRAM)_atmega324.hex
+atmega324: $(PROGRAM)_atmega324.lst
+
+atmega324_isp: atmega324
+atmega324_isp: TARGET = atmega324p
+# 512 byte boot
+atmega324_isp: HFUSE = DC
+# external clock
+atmega324_isp: LFUSE = 60
+# 2.7V brownout
+atmega324_isp: EFUSE = FD 
+atmega324_isp: isp
+
 atmega328: TARGET = atmega328
 atmega328: MCU_TARGET = atmega328p
 atmega328: CFLAGS += $(COMMON_OPTIONS)
