@@ -96,7 +96,7 @@ endif
 
 STK500 = "C:\Program Files\Atmel\AVR Tools\STK500\Stk500.exe"
 STK500-1 = $(STK500) -e -d$(MCU_TARGET) -pf -vf -if$(PROGRAM)_$(TARGET).hex \
-           -lFF -LFF -f$(HFUSE)$(LFUSE) -EF8 -ms -q -cUSB -I200kHz -s -wt
+           -lFF -LFF -f$(HFUSE)$(LFUSE) -EF8 -ms -q -cUSB -I200kHz -s -wt -P /dev/tty.PL2303-000013FA
 STK500-2 = $(STK500) -d$(MCU_TARGET) -ms -q -lCF -LCF -cUSB -I200kHz -s -wt
 #
 # End of build environment code.
@@ -248,13 +248,13 @@ atmega324: $(PROGRAM)_atmega324.hex
 atmega324: $(PROGRAM)_atmega324.lst
 
 atmega324_isp: atmega324
-atmega324_isp: TARGET = atmega324p
+atmega324_isp: TARGET = atmega324
 # 512 byte boot
 atmega324_isp: HFUSE = DC
 # external clock
-atmega324_isp: LFUSE = 60
+atmega324_isp: LFUSE = E0
 # 2.7V brownout
-atmega324_isp: EFUSE = FD 
+atmega324_isp: EFUSE = FD
 atmega324_isp: isp
 
 atmega328: TARGET = atmega328
